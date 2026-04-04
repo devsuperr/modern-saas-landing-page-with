@@ -1,0 +1,243 @@
+<!-- route: / -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynthWave - Elevate Your Workflow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    keyframes: {
+                        'fade-in-up': {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
+                    animation: {
+                        'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300 font-sans">
+
+    <div id="app">
+        <!-- Header -->
+        <header class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur-md text-white border-b border-gray-800">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
+                    SynthWave
+                </a>
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="hover:text-indigo-300 transition-colors">Features</a>
+                    <a href="#pricing" class="hover:text-indigo-300 transition-colors">Pricing</a>
+                    <a href="#testimonials" class="hover:text-indigo-300 transition-colors">Testimonials</a>
+                    <a href="/contact.html" onclick="navigateTo('/contact.html')" class="hover:text-indigo-300 transition-colors">Contact</a>
+                </nav>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="/login.html" onclick="navigateTo('/login.html')" class="py-2 px-4 rounded-md hover:bg-white/10 transition-colors">Log In</a>
+                    <a href="/signup.html" onclick="navigateTo('/signup.html')" class="py-2 px-4 rounded-md bg-white text-indigo-600 font-semibold shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105">
+                        Get Started Free
+                    </a>
+                </div>
+                <button class="md:hidden" id="menu-btn">
+                    <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                    <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 px-6 py-4 flex-col space-y-4">
+                <a href="#features" class="block py-2">Features</a>
+                <a href="#pricing" class="block py-2">Pricing</a>
+                <a href="#testimonials" class="block py-2">Testimonials</a>
+                <a href="/contact.html" onclick="navigateTo('/contact.html')" class="block py-2">Contact</a>
+                <div class="border-t border-gray-700 pt-4 flex flex-col space-y-3">
+                     <a href="/login.html" onclick="navigateTo('/login.html')" class="py-2 px-4 rounded-md text-center border border-white/50 hover:bg-white/10 transition-colors">Log In</a>
+                     <a href="/signup.html" onclick="navigateTo('/signup.html')" class="py-2 px-4 rounded-md bg-white text-indigo-600 font-semibold shadow-lg hover:bg-gray-200 transition-colors">
+                        Get Started Free
+                     </a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-900 via-gray-900 to-black text-white text-center px-4">
+                <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+                <div class="relative z-10 animate-fade-in-up">
+                    <h1 class="text-4xl md:text-7xl font-extrabold tracking-tight mb-4 leading-tight">
+                        Elevate Your Workflow.
+                        <br />
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">Unleash Productivity.</span>
+                    </h1>
+                    <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-300 mb-8">
+                        SynthWave is the all-in-one platform designed to streamline your projects, foster collaboration, and drive results.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="/signup.html" onclick="navigateTo('/signup.html')" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
+                            Start Free Trial
+                        </a>
+                        <a href="#features" class="w-full sm:w-auto bg-transparent border-2 border-gray-500 hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-full transition-colors">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="py-20 bg-gray-900">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Why SynthWave?</h2>
+                        <p class="mt-4 text-lg text-gray-400">Everything you need to boost your team's efficiency.</p>
+                    </div>
+                    <div id="features-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Feature items will be injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section id="pricing" class="py-20 bg-black/20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Flexible Pricing for Teams of All Sizes</h2>
+                        <p class="mt-4 text-lg text-gray-400">Choose the plan that's right for you.</p>
+                        <div class="mt-6 flex justify-center items-center space-x-4">
+                            <span id="monthly-label" class="text-white">Monthly</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="pricing-toggle" class="sr-only peer" />
+                                <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                            </label>
+                            <span id="yearly-label" class="text-gray-500">Yearly (Save 20%)</span>
+                        </div>
+                    </div>
+                    <div id="pricing-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                        <!-- Pricing cards will be injected here -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Testimonials Section -->
+            <section id="testimonials" class="py-20 bg-gray-900 overflow-hidden">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Loved by Teams Worldwide</h2>
+                        <p class="mt-4 text-lg text-gray-400">Don't just take our word for it. Here's what our customers say.</p>
+                    </div>
+                    <div id="testimonial-container" class="relative h-64">
+                         <!-- Testimonials will be injected here -->
+                    </div>
+                    <div id="testimonial-dots" class="flex justify-center mt-8 space-x-2">
+                        <!-- Dots will be injected here -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- FAQ Section -->
+            <section id="faq" class="py-20 bg-black/20">
+                <div class="container mx-auto px-6 max-w-4xl">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Frequently Asked Questions</h2>
+                    </div>
+                    <div id="faq-accordion" class="space-y-4">
+                        <!-- FAQ items will be injected here -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Newsletter CTA Section -->
+            <section class="py-20 bg-gray-900">
+                <div class="container mx-auto px-6">
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 md:p-12 text-center text-white shadow-2xl shadow-indigo-500/30">
+                        <h2 class="text-3xl font-bold mb-4">Stay Ahead of the Curve</h2>
+                        <p class="max-w-2xl mx-auto mb-8">Subscribe to our newsletter for the latest product updates, industry news, and productivity tips.</p>
+                        <form id="newsletter-form" class="max-w-lg mx-auto flex flex-col sm:flex-row gap-4">
+                            <input
+                                type="email"
+                                id="newsletter-email"
+                                placeholder="Enter your email"
+                                class="w-full px-4 py-3 rounded-md text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-purple-300"
+                                required
+                            />
+                            <button type="submit" class="bg-gray-900 hover:bg-black text-white font-semibold py-3 px-6 rounded-md transition-colors shadow-lg">
+                                Subscribe
+                            </button>
+                        </form>
+                        <p id="newsletter-message" class="mt-4 text-sm h-5"></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-400 border-t border-gray-800">
+            <div class="container mx-auto px-6 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-4">SynthWave</h3>
+                        <p class="text-sm">Supercharge your productivity.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" class="hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10.03C2.38,10.05 2.38,10.06 2.38,10.08C2.38,12.18 3.84,13.97 5.83,14.38C5.47,14.47 5.1,14.52 4.71,14.52C4.47,14.52 4.22,14.5 3.98,14.45C4.5,16.25 6.13,17.5 8.12,17.5C6.67,18.66 4.81,19.33 2.83,19.33C2.5,19.33 2.17,19.31 1.85,19.27C3.85,20.59 6.2,21.33 8.76,21.33C16.02,21.33 20.28,15.42 20.28,10.15C20.28,9.97 20.27,9.79 20.26,9.61C21.08,9.05 21.84,8.32 22.46,7.45V6.45L22.46,6Z" /></svg></a>
+                            <a href="#" class="hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" /></svg></a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Product</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+                            <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                            <li><a href="#testimonials" class="hover:text-white transition-colors">Testimonials</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Company</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                            <li><a href="/contact.html" onclick="navigateTo('/contact.html')" class="hover:text-white transition-colors">Contact</a></li>
+                            <li><a href="/privacy.html" onclick="navigateTo('/privacy.html')" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                            <li><a href="/terms.html" onclick="navigateTo('/terms.html')" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2">
+                            <li><a href="/privacy.html" onclick="navigateTo('/privacy.html')" class="hover:text-white transition-colors">Privacy</a></li>
+                            <li><a href="/terms.html" onclick="navigateTo('/terms.html')" class="hover:text-white transition-colors">Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
+                    <p>&copy; <span id="copyright-year"></span> SynthWave Inc. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // --- Mock Data ---
+        const mockData = {
+          features: [
+            { id: 1, title: 'Advanced Analytics', description: 'Gain deep insights into your performance with our state-of-the-art analytics dashboard.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>'},
+            { id: 2, title: 'Real-time Collaboration', description: 'Work with your team in real-time, no matter where they are. Share and edit documents seamlessly.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a3.002 3.00
