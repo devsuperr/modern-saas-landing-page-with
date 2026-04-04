@@ -240,4 +240,55 @@
         const mockData = {
           features: [
             { id: 1, title: 'Advanced Analytics', description: 'Gain deep insights into your performance with our state-of-the-art analytics dashboard.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>'},
-            { id: 2, title: 'Real-time Collaboration', description: 'Work with your team in real-time, no matter where they are. Share and edit documents seamlessly.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a3.002 3.00
+            { id: 2, title: 'Real-time Collaboration', description: 'Work with your team in real-time, no matter where they are. Share and edit documents seamlessly.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a3.002 3.002 0 01-2.732 0M11 16V9a4 4 0 00-8 0v7M5 9h6v7m-6 0h6m4 4v-2c0-.656.126-1.283.356-1.857m0 0a3.002 3.002 0 012.732 0M19 9h-6v7m6 0h-6" /></svg>'},
+            { id: 3, title: 'Cloud Storage', description: 'Securely store and access your files from anywhere, on any device. 256-bit encryption standard.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>'},
+            { id: 4, title: '24/7 Support', description: 'Our dedicated support team is available around the clock to help you with any questions or issues.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>'}
+          ],
+          plans: [
+            { id: 1, name: 'Starter', description: 'For individuals and small teams starting out.', monthly_price: 29, yearly_price: 290, features_list: ['5 Projects', '10GB Storage', 'Basic Analytics', 'Email Support'], is_popular: false },
+            { id: 2, name: 'Pro', description: 'For growing businesses that need more power and features.', monthly_price: 79, yearly_price: 790, features_list: ['Unlimited Projects', '100GB Storage', 'Advanced Analytics', 'Priority Support', 'Team Collaboration'], is_popular: true },
+            { id: 3, name: 'Enterprise', description: 'For large organizations with custom needs.', monthly_price: 199, yearly_price: 1990, features_list: ['Everything in Pro', 'Dedicated Account Manager', 'Custom Integrations', '24/7 Phone Support'], is_popular: false }
+          ],
+          testimonials: [
+            { id: 1, quote: 'This product has transformed our workflow. The real-time collaboration is a game-changer for our remote team.', author_name: 'Jane Doe', author_title: 'CEO, Innovate Inc.', avatar_url: 'https://randomuser.me/api/portraits/women/44.jpg' },
+            { id: 2, quote: 'The analytics are incredibly detailed and have helped us optimize our strategy. Highly recommended!', author_name: 'John Smith', author_title: 'Marketing Director, Growth Co.', avatar_url: 'https://randomuser.me/api/portraits/men/32.jpg' },
+            { id: 3, quote: 'Customer support is top-notch. They are responsive, knowledgeable, and genuinely helpful.', author_name: 'Emily White', author_title: 'Project Manager, Solutions Corp', avatar_url: 'https://randomuser.me/api/portraits/women/68.jpg' },
+          ],
+          faqs: [
+            { id: 1, question: 'Is there a free trial available?', answer: 'Yes, we offer a 14-day free trial for our Pro plan. No credit card is required to get started.' },
+            { id: 2, question: 'Can I change my plan later?', answer: 'Absolutely! You can upgrade, downgrade, or cancel your plan at any time from your account dashboard.' },
+            { id: 3, question: 'What payment methods do you accept?', answer: 'We accept all major credit cards. For Enterprise plans, we also support bank transfers.' },
+            { id: 4, question: 'Is my data secure?', answer: 'Data security is our top priority. We use industry-standard encryption for data in transit and at rest.' },
+          ]
+        };
+
+        // --- Helper Functions ---
+        function navigateTo(path) { event.preventDefault(); window.location.href = path; }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu ---
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconOpen = document.getElementById('menu-icon-open');
+            const menuIconClose = document.getElementById('menu-icon-close');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+                menuIconOpen.classList.toggle('hidden');
+                menuIconClose.classList.toggle('hidden');
+            });
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    menuIconOpen.classList.remove('hidden');
+                    menuIconClose.classList.add('hidden');
+                }
+            });
+
+            // --- Render Features ---
+            const featuresGrid = document.getElementById('features-grid');
+            featuresGrid.innerHTML = mockData.features.map(f => `
+                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg hover:shadow-indigo-500/20 hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-indigo-400 mb-4">${f.icon_svg}</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">${f.title}</h3>
