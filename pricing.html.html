@@ -38,6 +38,7 @@ async function fetchData(t,m){if(sb){try{const{data,error}=await sb.from(t).sele
 function navigateTo(p){window.parent.postMessage({type:'nav-page',pageId:p},'*')}
 function showToast(m,t){const d=document.createElement('div');d.className='fixed bottom-4 right-4 z-[9999] px-4 py-3 rounded-xl shadow-lg text-sm font-medium '+(t==='error'?'bg-red-500 text-white':'bg-green-500 text-white');d.textContent=m;document.body.appendChild(d);setTimeout(()=>{d.style.transition='opacity 0.3s ease-in-out';d.style.opacity='0';setTimeout(()=>d.remove(),300)},3000)}
 </script>
+  <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 <body class="bg-gray-900 text-gray-300 font-sans">
     <div id="app">
@@ -261,5 +262,6 @@ function showToast(m,t){const d=document.createElement('div');d.className='fixed
             document.getElementById('copyright-year').textContent = new Date().getFullYear();
         });
     </script>
+<div style="position:fixed;bottom:12px;right:12px;z-index:9999;background:rgba(0,0,0,0.75);color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-family:system-ui,sans-serif;display:flex;align-items:center;gap:6px;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.2);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>Built with Studiojungle</div>
 </body>
 </html>
