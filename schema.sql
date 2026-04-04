@@ -62,6 +62,31 @@ CREATE TABLE subscribers (
     status VARCHAR(50) DEFAULT 'subscribed' -- e.g., subscribed, unsubscribed
 );
 
+-- User Profiles Table
+-- This table stores public profile data and is linked to the auth.users table.
+CREATE TABLE profiles (
+  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  display_name VARCHAR(255),
+  avatar_url TEXT,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Function to create a profile when a new user signs up
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO public.profiles (id, display_name)
+  VALUES (new.id, new.raw_user_meta_data->>'display_name');
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Trigger to call the function on new user creation
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
+
+
 -- Sample Data Insertion
 -- This data will be used by the HTML previews and can be used to seed the database.
 
@@ -92,6 +117,3 @@ INSERT INTO faqs (question, answer, sort_order) VALUES
 ('What payment methods do you accept?', 'We accept all major credit cards, including Visa, Mastercard, and American Express. For Enterprise plans, we also support bank transfers.', 3),
 ('Is my data secure?', 'Data security is our top priority. We use industry-standard encryption for data in transit and at rest. Our infrastructure is hosted on secure, certified data centers.', 4),
 ('Do you offer discounts for non-profits?', 'Yes, we do! We offer a 30% discount for registered non-profit organizations. Please contact our sales team with your documentation to apply for the discount.', 5);
-
--- Subscribers
--- No initial data needed for subscribers.

@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynthWave - Elevate Your Workflow</title>
+    <title>Red Orange Technologies - Elevate Your Workflow</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -35,6 +36,22 @@
     <style>
         body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     </style>
+    <script>
+let SUPABASE_URL='', SUPABASE_KEY='', sb=null;
+window.parent.postMessage({type:'request-auth-config'},'*');
+window.addEventListener('message',function(e){
+  if(e.data&&e.data.type==='auth-config'){
+    SUPABASE_URL=e.data.url; SUPABASE_KEY=e.data.anonKey;
+    if(window.supabase&&SUPABASE_URL){sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);window.dispatchEvent(new Event('sb-ready'));}
+  }
+});
+const AppState={_data:{},_listeners:{},get(k){return this._data[k]},set(k,v){this._data[k]=v;try{localStorage.setItem('app_'+k,JSON.stringify(v))}catch(e){}(this._listeners[k]||[]).forEach(fn=>fn(v))},load(k,f){try{const v=localStorage.getItem('app_'+k);return v?JSON.parse(v):f}catch(e){return f}},on(k,fn){(this._listeners[k]=this._listeners[k]||[]).push(fn)}};
+const Cart={items:AppState.load('cart',[]),add(p,q=1){const e=this.items.find(i=>i.id===p.id);if(e)e.quantity+=q;else this.items.push({...p,quantity:q});this.save()},remove(id){this.items=this.items.filter(i=>i.id!==id);this.save()},updateQty(id,q){const i=this.items.find(x=>x.id===id);if(i)i.quantity=Math.max(0,q);this.items=this.items.filter(i=>i.quantity>0);this.save()},total(){return this.items.reduce((s,i)=>s+i.price*i.quantity,0)},count(){return this.items.reduce((s,i)=>s+i.quantity,0)},save(){AppState.set('cart',this.items);this.render()},render(){document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=this.count())}};
+const Auth={user:null,async signUp(e,p,n){if(!sb)return{error:'Backend not connected'};const{data,error}=await sb.auth.signUp({email:e,password:p,options:{data:{display_name:n}}});if(!error&&data.user){this.user=data.user;window.dispatchEvent(new Event('auth-change'))}return{data,error}},async signIn(e,p){if(!sb)return{error:'Backend not connected'};const{data,error}=await sb.auth.signInWithPassword({email:e,password:p});if(!error&&data.user){this.user=data.user;window.dispatchEvent(new Event('auth-change'))}return{data,error}},async signOut(){if(sb)await sb.auth.signOut();this.user=null;window.dispatchEvent(new Event('auth-change'))},async getUser(){if(!sb)return null;const{data}=await sb.auth.getUser();this.user=data?.user||null;return this.user}};
+async function fetchData(t,m){if(sb){try{const{data,error}=await sb.from(t).select('*');if(!error&&data&&data.length>0)return data}catch(e){}}return m||[]}
+function navigateTo(p){window.parent.postMessage({type:'nav-page',pageId:p},'*')}
+function showToast(m,t){const d=document.createElement('div');d.className='fixed bottom-4 right-4 z-[9999] px-4 py-3 rounded-xl shadow-lg text-sm font-medium '+(t==='error'?'bg-red-500 text-white':'bg-green-500 text-white');d.textContent=m;document.body.appendChild(d);setTimeout(()=>{d.style.transition='opacity 0.3s ease-in-out';d.style.opacity='0';setTimeout(()=>d.remove(),300)},3000)}
+</script>
 </head>
 <body class="bg-gray-900 text-gray-300 font-sans">
 
@@ -42,18 +59,18 @@
         <!-- Header -->
         <header class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur-md text-white border-b border-gray-800">
             <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="/" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-                    SynthWave
+                <a href="#" onclick="navigateTo('/')" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-400">
+                    Red Orange Technologies
                 </a>
                 <nav class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="hover:text-indigo-300 transition-colors">Features</a>
-                    <a href="#pricing" class="hover:text-indigo-300 transition-colors">Pricing</a>
-                    <a href="#testimonials" class="hover:text-indigo-300 transition-colors">Testimonials</a>
-                    <a href="/contact.html" onclick="navigateTo('/contact.html')" class="hover:text-indigo-300 transition-colors">Contact</a>
+                    <a href="#features" class="hover:text-orange-300 transition-colors">Features</a>
+                    <a href="#" onclick="navigateTo('/pricing.html')" class="hover:text-orange-300 transition-colors">Pricing</a>
+                    <a href="#testimonials" class="hover:text-orange-300 transition-colors">Testimonials</a>
+                    <a href="#" onclick="navigateTo('/contact.html')" class="hover:text-orange-300 transition-colors">Contact</a>
                 </nav>
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="/login.html" onclick="navigateTo('/login.html')" class="py-2 px-4 rounded-md hover:bg-white/10 transition-colors">Log In</a>
-                    <a href="/signup.html" onclick="navigateTo('/signup.html')" class="py-2 px-4 rounded-md bg-white text-indigo-600 font-semibold shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105">
+                    <a href="#" onclick="navigateTo('/login.html')" class="py-2 px-4 rounded-md hover:bg-white/10 transition-colors">Log In</a>
+                    <a href="#" onclick="navigateTo('/signup.html')" class="py-2 px-4 rounded-md bg-orange-500 text-white font-semibold shadow-lg hover:bg-orange-600 transition-transform transform hover:scale-105">
                         Get Started Free
                     </a>
                 </div>
@@ -68,12 +85,12 @@
             </div>
             <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 px-6 py-4 flex-col space-y-4">
                 <a href="#features" class="block py-2">Features</a>
-                <a href="#pricing" class="block py-2">Pricing</a>
+                <a href="#" onclick="navigateTo('/pricing.html')" class="block py-2">Pricing</a>
                 <a href="#testimonials" class="block py-2">Testimonials</a>
-                <a href="/contact.html" onclick="navigateTo('/contact.html')" class="block py-2">Contact</a>
+                <a href="#" onclick="navigateTo('/contact.html')" class="block py-2">Contact</a>
                 <div class="border-t border-gray-700 pt-4 flex flex-col space-y-3">
-                     <a href="/login.html" onclick="navigateTo('/login.html')" class="py-2 px-4 rounded-md text-center border border-white/50 hover:bg-white/10 transition-colors">Log In</a>
-                     <a href="/signup.html" onclick="navigateTo('/signup.html')" class="py-2 px-4 rounded-md bg-white text-indigo-600 font-semibold shadow-lg hover:bg-gray-200 transition-colors">
+                     <a href="#" onclick="navigateTo('/login.html')" class="py-2 px-4 rounded-md text-center border border-white/50 hover:bg-white/10 transition-colors">Log In</a>
+                     <a href="#" onclick="navigateTo('/signup.html')" class="py-2 px-4 rounded-md bg-orange-500 text-white font-semibold shadow-lg hover:bg-orange-600 transition-colors">
                         Get Started Free
                      </a>
                 </div>
@@ -82,20 +99,21 @@
 
         <main>
             <!-- Hero Section -->
-            <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-900 via-gray-900 to-black text-white text-center px-4">
-                <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+            <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-black text-white text-center px-4">
+                <div class="absolute w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 -top-10 -left-20"></div>
+                <div class="absolute w-72 h-72 bg-red-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 bottom-0 right-20"></div>
+
                 <div class="relative z-10 animate-fade-in-up">
                     <h1 class="text-4xl md:text-7xl font-extrabold tracking-tight mb-4 leading-tight">
                         Elevate Your Workflow.
                         <br />
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">Unleash Productivity.</span>
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-400">Unleash Productivity.</span>
                     </h1>
                     <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-300 mb-8">
-                        SynthWave is the all-in-one platform designed to streamline your projects, foster collaboration, and drive results.
+                        Red Orange Technologies provides the all-in-one platform to streamline projects, foster collaboration, and drive results.
                     </p>
                     <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                        <a href="/signup.html" onclick="navigateTo('/signup.html')" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
+                        <a href="#" onclick="navigateTo('/signup.html')" class="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
                             Start Free Trial
                         </a>
                         <a href="#features" class="w-full sm:w-auto bg-transparent border-2 border-gray-500 hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-full transition-colors">
@@ -109,7 +127,7 @@
             <section id="features" class="py-20 bg-gray-900">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-12">
-                        <h2 class="text-3xl md:text-4xl font-bold text-white">Why SynthWave?</h2>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Why Red Orange Tech?</h2>
                         <p class="mt-4 text-lg text-gray-400">Everything you need to boost your team's efficiency.</p>
                     </div>
                     <div id="features-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -118,23 +136,20 @@
                 </div>
             </section>
 
-            <!-- Pricing Section -->
+            <!-- Pricing Section (Preview) -->
             <section id="pricing" class="py-20 bg-black/20">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-12">
                         <h2 class="text-3xl md:text-4xl font-bold text-white">Flexible Pricing for Teams of All Sizes</h2>
-                        <p class="mt-4 text-lg text-gray-400">Choose the plan that's right for you.</p>
-                        <div class="mt-6 flex justify-center items-center space-x-4">
-                            <span id="monthly-label" class="text-white">Monthly</span>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="pricing-toggle" class="sr-only peer" />
-                                <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
-                            </label>
-                            <span id="yearly-label" class="text-gray-500">Yearly (Save 20%)</span>
-                        </div>
+                        <p class="mt-4 text-lg text-gray-400">Choose the plan that's right for you. Simple and transparent.</p>
                     </div>
                     <div id="pricing-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                         <!-- Pricing cards will be injected here -->
+                    </div>
+                     <div class="text-center mt-12">
+                        <a href="#" onclick="navigateTo('/pricing.html')" class="text-orange-400 font-semibold hover:text-orange-300 text-lg transition-colors">
+                            View Full Pricing Details &rarr;
+                        </a>
                     </div>
                 </div>
             </section>
@@ -170,7 +185,7 @@
             <!-- Newsletter CTA Section -->
             <section class="py-20 bg-gray-900">
                 <div class="container mx-auto px-6">
-                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 md:p-12 text-center text-white shadow-2xl shadow-indigo-500/30">
+                    <div class="bg-gradient-to-r from-red-600 to-orange-500 rounded-2xl p-8 md:p-12 text-center text-white shadow-2xl shadow-orange-500/30">
                         <h2 class="text-3xl font-bold mb-4">Stay Ahead of the Curve</h2>
                         <p class="max-w-2xl mx-auto mb-8">Subscribe to our newsletter for the latest product updates, industry news, and productivity tips.</p>
                         <form id="newsletter-form" class="max-w-lg mx-auto flex flex-col sm:flex-row gap-4">
@@ -178,7 +193,7 @@
                                 type="email"
                                 id="newsletter-email"
                                 placeholder="Enter your email"
-                                class="w-full px-4 py-3 rounded-md text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-purple-300"
+                                class="w-full px-4 py-3 rounded-md text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-orange-300"
                                 required
                             />
                             <button type="submit" class="bg-gray-900 hover:bg-black text-white font-semibold py-3 px-6 rounded-md transition-colors shadow-lg">
@@ -196,18 +211,18 @@
             <div class="container mx-auto px-6 py-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-4">SynthWave</h3>
+                        <h3 class="text-xl font-bold text-white mb-4">Red Orange Technologies</h3>
                         <p class="text-sm">Supercharge your productivity.</p>
                         <div class="flex space-x-4 mt-4">
-                            <a href="#" class="hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10.03C2.38,10.05 2.38,10.06 2.38,10.08C2.38,12.18 3.84,13.97 5.83,14.38C5.47,14.47 5.1,14.52 4.71,14.52C4.47,14.52 4.22,14.5 3.98,14.45C4.5,16.25 6.13,17.5 8.12,17.5C6.67,18.66 4.81,19.33 2.83,19.33C2.5,19.33 2.17,19.31 1.85,19.27C3.85,20.59 6.2,21.33 8.76,21.33C16.02,21.33 20.28,15.42 20.28,10.15C20.28,9.97 20.27,9.79 20.26,9.61C21.08,9.05 21.84,8.32 22.46,7.45V6.45L22.46,6Z" /></svg></a>
-                            <a href="#" class="hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" /></svg></a>
+                            <a href="#" class="hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
+                            <a href="#" class="hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.315 2zM12 4.667c-4.053 0-4.446.016-6.02.09c-1.462.067-2.395.33-3.23.67a3.172 3.172 0 00-1.152.822c-.417.417-.655.88-.822 1.152-.34.835-.603 1.768-.67 3.23-.074 1.574-.09 1.967-.09 6.02s.016 4.446.09 6.02c.067 1.462.33 2.395.67 3.23.21.517.47.96.822 1.152a3.172 3.172 0 001.152.822c.835.34 1.768.603 3.23.67 1.574.074 1.967.09 6.02.09s4.446-.016 6.02-.09c1.462-.067 2.395-.33 3.23-.67a3.172 3.172 0 001.152-.822c.417-.417.655-.88.822-1.152.34-.835.603-1.768.67-3.23.074-1.574.09-1.967.09-6.02s-.016-4.446-.09-6.02c-.067-1.462-.33-2.395-.67-3.23a3.172 3.172 0 00-.822-1.152 3.172 3.172 0 00-1.152-.822c-.835-.34-1.768-.603-3.23-.67C16.463 4.683 16.07 4.667 12 4.667zM12 8.25a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zM12 14a2 2 0 110-4 2 2 0 010 4zm6.406-7.18a.938.938 0 100-1.875.938.938 0 000 1.875z" clip-rule="evenodd" /></svg></a>
                         </div>
                     </div>
                     <div>
                         <h4 class="text-white font-semibold mb-4">Product</h4>
                         <ul class="space-y-2">
                             <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
-                            <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                            <li><a href="#" onclick="navigateTo('/pricing.html')" class="hover:text-white transition-colors">Pricing</a></li>
                             <li><a href="#testimonials" class="hover:text-white transition-colors">Testimonials</a></li>
                         </ul>
                     </div>
@@ -215,21 +230,21 @@
                         <h4 class="text-white font-semibold mb-4">Company</h4>
                         <ul class="space-y-2">
                             <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-                            <li><a href="/contact.html" onclick="navigateTo('/contact.html')" class="hover:text-white transition-colors">Contact</a></li>
-                            <li><a href="/privacy.html" onclick="navigateTo('/privacy.html')" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                            <li><a href="/terms.html" onclick="navigateTo('/terms.html')" class="hover:text-white transition-colors">Terms of Service</a></li>
+                            <li><a href="#" onclick="navigateTo('/contact.html')" class="hover:text-white transition-colors">Contact</a></li>
+                            <li><a href="#" onclick="navigateTo('/privacy.html')" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" onclick="navigateTo('/terms.html')" class="hover:text-white transition-colors">Terms of Service</a></li>
                         </ul>
                     </div>
                     <div>
                         <h4 class="text-white font-semibold mb-4">Legal</h4>
                         <ul class="space-y-2">
-                            <li><a href="/privacy.html" onclick="navigateTo('/privacy.html')" class="hover:text-white transition-colors">Privacy</a></li>
-                            <li><a href="/terms.html" onclick="navigateTo('/terms.html')" class="hover:text-white transition-colors">Terms</a></li>
+                            <li><a href="#" onclick="navigateTo('/privacy.html')" class="hover:text-white transition-colors">Privacy</a></li>
+                            <li><a href="#" onclick="navigateTo('/terms.html')" class="hover:text-white transition-colors">Terms</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
-                    <p>&copy; <span id="copyright-year"></span> SynthWave Inc. All rights reserved.</p>
+                    <p>&copy; <span id="copyright-year"></span> Red Orange Technologies Inc. All rights reserved.</p>
                 </div>
             </div>
         </footer>
@@ -239,10 +254,10 @@
         // --- Mock Data ---
         const mockData = {
           features: [
-            { id: 1, title: 'Advanced Analytics', description: 'Gain deep insights into your performance with our state-of-the-art analytics dashboard.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>'},
-            { id: 2, title: 'Real-time Collaboration', description: 'Work with your team in real-time, no matter where they are. Share and edit documents seamlessly.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a3.002 3.002 0 01-2.732 0M11 16V9a4 4 0 00-8 0v7M5 9h6v7m-6 0h6m4 4v-2c0-.656.126-1.283.356-1.857m0 0a3.002 3.002 0 012.732 0M19 9h-6v7m6 0h-6" /></svg>'},
-            { id: 3, title: 'Cloud Storage', description: 'Securely store and access your files from anywhere, on any device. 256-bit encryption standard.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>'},
-            { id: 4, title: '24/7 Support', description: 'Our dedicated support team is available around the clock to help you with any questions or issues.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>'}
+            { id: 1, title: 'Advanced Analytics', description: 'Gain deep insights into your performance with our state-of-the-art analytics dashboard.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>'},
+            { id: 2, title: 'Real-time Collaboration', description: 'Work with your team in real-time, no matter where they are. Share and edit documents seamlessly.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a3.002 3.002 0 01-2.732 0M11 16V9a4 4 0 00-8 0v7M5 9h6v7m-6 0h6m4 4v-2c0-.656.126-1.283.356-1.857m0 0a3.002 3.002 0 012.732 0M19 9h-6v7m6 0h-6" /></svg>'},
+            { id: 3, title: 'Cloud Storage', description: 'Securely store and access your files from anywhere, on any device. 256-bit encryption standard.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>'},
+            { id: 4, title: '24/7 Support', description: 'Our dedicated support team is available around the clock to help you with any questions or issues.', icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>'}
           ],
           plans: [
             { id: 1, name: 'Starter', description: 'For individuals and small teams starting out.', monthly_price: 29, yearly_price: 290, features_list: ['5 Projects', '10GB Storage', 'Basic Analytics', 'Email Support'], is_popular: false },
@@ -261,9 +276,6 @@
             { id: 4, question: 'Is my data secure?', answer: 'Data security is our top priority. We use industry-standard encryption for data in transit and at rest.' },
           ]
         };
-
-        // --- Helper Functions ---
-        function navigateTo(path) { event.preventDefault(); window.location.href = path; }
 
         document.addEventListener('DOMContentLoaded', () => {
             // --- Mobile Menu ---
@@ -288,7 +300,158 @@
 
             // --- Render Features ---
             const featuresGrid = document.getElementById('features-grid');
-            featuresGrid.innerHTML = mockData.features.map(f => `
-                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg hover:shadow-indigo-500/20 hover:-translate-y-1 transition-all duration-300">
-                    <div class="text-indigo-400 mb-4">${f.icon_svg}</div>
-                    <h3 class="text-xl font-semibold text-white mb-2">${f.title}</h3>
+            if(featuresGrid) {
+                featuresGrid.innerHTML = mockData.features.map(f => `
+                    <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg hover:shadow-orange-500/20 hover:-translate-y-1 transition-all duration-300">
+                        <div class="mb-4">${f.icon_svg}</div>
+                        <h3 class="text-xl font-semibold text-white mb-2">${f.title}</h3>
+                        <p class="text-gray-400">${f.description}</p>
+                    </div>
+                `).join('');
+            }
+
+            // --- Pricing Preview ---
+            const pricingGrid = document.getElementById('pricing-grid');
+            if(pricingGrid) {
+                // Show only 3 plans for the preview
+                 pricingGrid.innerHTML = mockData.plans.map(p => {
+                    const price = p.monthly_price;
+                    const popularClass = p.is_popular ? 'border-orange-500 bg-gray-800/50 scale-105 shadow-2xl shadow-orange-500/20' : 'border-gray-700 bg-gray-800/30';
+                    const buttonClass = p.is_popular ? 'bg-orange-500 hover:bg-orange-600 text-white' : 'bg-gray-700 hover:bg-orange-500 text-white';
+                    return `
+                    <div class="p-8 rounded-2xl border transition-all duration-300 ${popularClass}">
+                        ${p.is_popular ? '<div class="text-center mb-4"><span class="bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase">Most Popular</span></div>' : ''}
+                        <h3 class="text-2xl font-semibold text-white text-center">${p.name}</h3>
+                        <p class="text-center text-gray-400 mt-2 h-10">${p.description}</p>
+                        <div class="text-center my-6">
+                            <span class="text-gray-400 text-xl">Starts at </span>
+                            <span class="text-5xl font-extrabold text-white">$${price}</span>
+                            <span class="text-gray-400">/ mo</span>
+                        </div>
+                        <ul class="space-y-4 text-gray-300">
+                            ${p.features_list.slice(0, 3).map(feat => `<li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>${feat}</li>`).join('')}
+                             <li class="flex items-center text-gray-500"><svg class="w-5 h-5 text-gray-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>And more...</li>
+                        </ul>
+                        <button onclick="navigateTo('/pricing.html')" class="w-full mt-8 py-3 px-6 font-semibold rounded-lg transition-colors ${buttonClass}">
+                            View Plan
+                        </button>
+                    </div>
+                `}).join('');
+            }
+            
+            // --- Testimonials Carousel ---
+            const testimonialContainer = document.getElementById('testimonial-container');
+            const testimonialDots = document.getElementById('testimonial-dots');
+            if(testimonialContainer && testimonialDots) {
+                let currentTestimonial = 0;
+                
+                function renderTestimonials() {
+                    testimonialContainer.innerHTML = mockData.testimonials.map((t, i) => `
+                        <div class="absolute inset-0 transition-opacity duration-700 ease-in-out ${i === currentTestimonial ? 'opacity-100' : 'opacity-0'}" style="transition-delay: ${i === currentTestimonial ? '150ms' : '0ms'}">
+                            <div class="flex flex-col items-center text-center">
+                                <img src="${t.avatar_url}" alt="${t.author_name}" class="w-20 h-20 rounded-full mb-4 border-4 border-gray-700" />
+                                <blockquote class="max-w-3xl mx-auto text-xl italic text-white">
+                                    “${t.quote}”
+                                </blockquote>
+                                <p class="mt-4 font-semibold text-gray-300">${t.author_name}</p>
+                                <p class="text-orange-400">${t.author_title}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                    
+                    testimonialDots.innerHTML = mockData.testimonials.map((_, i) => 
+                        `<button data-index="${i}" class="testimonial-dot w-3 h-3 rounded-full transition-colors ${i === currentTestimonial ? 'bg-orange-500' : 'bg-gray-600 hover:bg-gray-500'}"></button>`
+                    ).join('');
+
+                    document.querySelectorAll('.testimonial-dot').forEach(dot => {
+                        dot.addEventListener('click', () => {
+                            currentTestimonial = parseInt(dot.dataset.index);
+                            renderTestimonials();
+                            resetInterval();
+                        });
+                    });
+                }
+
+                let testimonialInterval = setInterval(() => {
+                    currentTestimonial = (currentTestimonial + 1) % mockData.testimonials.length;
+                    renderTestimonials();
+                }, 5000);
+
+                function resetInterval() {
+                    clearInterval(testimonialInterval);
+                    testimonialInterval = setInterval(() => {
+                        currentTestimonial = (currentTestimonial + 1) % mockData.testimonials.length;
+                        renderTestimonials();
+                    }, 5000);
+                }
+                renderTestimonials();
+            }
+            
+            // --- FAQ Accordion ---
+            const faqAccordion = document.getElementById('faq-accordion');
+            if(faqAccordion) {
+                faqAccordion.innerHTML = mockData.faqs.map((faq, index) => `
+                    <div class="bg-gray-800/50 rounded-lg">
+                        <button data-index="${index}" class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+                            <span class="text-lg font-medium text-white">${faq.question}</span>
+                            <svg class="w-6 h-6 text-gray-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+                            <div class="p-6 pt-0 text-gray-400">
+                                <p>${faq.answer}</p>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                faqAccordion.addEventListener('click', e => {
+                    const toggle = e.target.closest('.faq-toggle');
+                    if (!toggle) return;
+
+                    const content = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('svg');
+                    const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+                    document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = '0px');
+                    document.querySelectorAll('.faq-toggle svg').forEach(i => i.classList.remove('rotate-180'));
+
+                    if (!isOpen) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            }
+            
+            // --- Newsletter Form ---
+            const newsletterForm = document.getElementById('newsletter-form');
+            if(newsletterForm) {
+                const newsletterEmail = document.getElementById('newsletter-email');
+                const newsletterMessage = document.getElementById('newsletter-message');
+                
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = newsletterEmail.value;
+                    if (!email) {
+                        newsletterMessage.textContent = 'Please enter a valid email.';
+                        newsletterMessage.classList.add('text-red-400');
+                        return;
+                    }
+                    
+                    newsletterMessage.textContent = 'Subscribing...';
+                    newsletterMessage.className = 'mt-4 text-sm h-5 text-yellow-300';
+
+                    setTimeout(() => {
+                        newsletterMessage.textContent = 'Thank you for subscribing!';
+                        newsletterMessage.className = 'mt-4 text-sm h-5 text-green-300';
+                        newsletterEmail.value = '';
+                        setTimeout(() => newsletterMessage.textContent = '', 3000);
+                    }, 1000);
+                });
+            }
+
+            // --- Copyright Year ---
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

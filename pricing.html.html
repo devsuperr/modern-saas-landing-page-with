@@ -1,0 +1,265 @@
+<!-- route: /pricing.html -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Red Orange Technologies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style> body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; } </style>
+    <script>
+let SUPABASE_URL='', SUPABASE_KEY='', sb=null;
+window.parent.postMessage({type:'request-auth-config'},'*');
+window.addEventListener('message',function(e){
+  if(e.data&&e.data.type==='auth-config'){
+    SUPABASE_URL=e.data.url; SUPABASE_KEY=e.data.anonKey;
+    if(window.supabase&&SUPABASE_URL){sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);window.dispatchEvent(new Event('sb-ready'));}
+  }
+});
+const AppState={_data:{},_listeners:{},get(k){return this._data[k]},set(k,v){this._data[k]=v;try{localStorage.setItem('app_'+k,JSON.stringify(v))}catch(e){}(this._listeners[k]||[]).forEach(fn=>fn(v))},load(k,f){try{const v=localStorage.getItem('app_'+k);return v?JSON.parse(v):f}catch(e){return f}},on(k,fn){(this._listeners[k]=this._listeners[k]||[]).push(fn)}};
+const Cart={items:AppState.load('cart',[]),add(p,q=1){const e=this.items.find(i=>i.id===p.id);if(e)e.quantity+=q;else this.items.push({...p,quantity:q});this.save()},remove(id){this.items=this.items.filter(i=>i.id!==id);this.save()},updateQty(id,q){const i=this.items.find(x=>x.id===id);if(i)i.quantity=Math.max(0,q);this.items=this.items.filter(i=>i.quantity>0);this.save()},total(){return this.items.reduce((s,i)=>s+i.price*i.quantity,0)},count(){return this.items.reduce((s,i)=>s+i.quantity,0)},save(){AppState.set('cart',this.items);this.render()},render(){document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=this.count())}};
+const Auth={user:null,async signUp(e,p,n){if(!sb)return{error:'Backend not connected'};const{data,error}=await sb.auth.signUp({email:e,password:p,options:{data:{display_name:n}}});if(!error&&data.user){this.user=data.user;window.dispatchEvent(new Event('auth-change'))}return{data,error}},async signIn(e,p){if(!sb)return{error:'Backend not connected'};const{data,error}=await sb.auth.signInWithPassword({email:e,password:p});if(!error&&data.user){this.user=data.user;window.dispatchEvent(new Event('auth-change'))}return{data,error}},async signOut(){if(sb)await sb.auth.signOut();this.user=null;window.dispatchEvent(new Event('auth-change'))},async getUser(){if(!sb)return null;const{data}=await sb.auth.getUser();this.user=data?.user||null;return this.user}};
+async function fetchData(t,m){if(sb){try{const{data,error}=await sb.from(t).select('*');if(!error&&data&&data.length>0)return data}catch(e){}}return m||[]}
+function navigateTo(p){window.parent.postMessage({type:'nav-page',pageId:p},'*')}
+function showToast(m,t){const d=document.createElement('div');d.className='fixed bottom-4 right-4 z-[9999] px-4 py-3 rounded-xl shadow-lg text-sm font-medium '+(t==='error'?'bg-red-500 text-white':'bg-green-500 text-white');d.textContent=m;document.body.appendChild(d);setTimeout(()=>{d.style.transition='opacity 0.3s ease-in-out';d.style.opacity='0';setTimeout(()=>d.remove(),300)},3000)}
+</script>
+</head>
+<body class="bg-gray-900 text-gray-300 font-sans">
+    <div id="app">
+        <!-- Header -->
+        <header class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur-md text-white border-b border-gray-800">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" onclick="navigateTo('/')" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-400">
+                    Red Orange Technologies
+                </a>
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="/#features" class="hover:text-orange-300 transition-colors">Features</a>
+                    <a href="#" onclick="navigateTo('/pricing.html')" class="text-orange-400 font-semibold">Pricing</a>
+                    <a href="/#testimonials" class="hover:text-orange-300 transition-colors">Testimonials</a>
+                    <a href="#" onclick="navigateTo('/contact.html')" class="hover:text-orange-300 transition-colors">Contact</a>
+                </nav>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" onclick="navigateTo('/login.html')" class="py-2 px-4 rounded-md hover:bg-white/10 transition-colors">Log In</a>
+                    <a href="#" onclick="navigateTo('/signup.html')" class="py-2 px-4 rounded-md bg-orange-500 text-white font-semibold shadow-lg hover:bg-orange-600 transition-transform transform hover:scale-105">
+                        Get Started Free
+                    </a>
+                </div>
+                <button class="md:hidden" id="menu-btn">
+                    <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                    <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+             <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 px-6 py-4 flex-col space-y-4">
+                <a href="/#features" class="block py-2">Features</a>
+                <a href="#" onclick="navigateTo('/pricing.html')" class="block py-2">Pricing</a>
+                <a href="/#testimonials" class="block py-2">Testimonials</a>
+                <a href="#" onclick="navigateTo('/contact.html')" class="block py-2">Contact</a>
+                <div class="border-t border-gray-700 pt-4 flex flex-col space-y-3">
+                     <a href="#" onclick="navigateTo('/login.html')" class="py-2 px-4 rounded-md text-center border border-white/50 hover:bg-white/10 transition-colors">Log In</a>
+                     <a href="#" onclick="navigateTo('/signup.html')" class="py-2 px-4 rounded-md bg-orange-500 text-white font-semibold shadow-lg hover:bg-orange-600 transition-colors">
+                        Get Started Free
+                     </a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Pricing Section -->
+            <section id="pricing" class="py-20 bg-black/20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12 max-w-2xl mx-auto">
+                        <h1 class="text-4xl md:text-5xl font-bold text-white">Find the perfect plan</h1>
+                        <p class="mt-4 text-lg text-gray-400">Start for free, then grow with us. Our pricing is designed to scale with your business. No hidden fees, no surprises.</p>
+                        <div class="mt-8 flex justify-center items-center space-x-4">
+                            <span id="monthly-label" class="text-white font-semibold">Monthly</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="pricing-toggle" class="sr-only peer" />
+                                <div class="w-14 h-8 bg-gray-600 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-orange-500"></div>
+                            </label>
+                            <span id="yearly-label" class="text-gray-500 font-semibold">Yearly <span class="text-green-400">(Save 20%)</span></span>
+                        </div>
+                    </div>
+                    <div id="pricing-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                        <!-- Pricing cards will be injected here -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- FAQ Section -->
+            <section id="faq" class="py-20 bg-gray-900">
+                <div class="container mx-auto px-6 max-w-4xl">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Pricing Questions</h2>
+                    </div>
+                    <div id="faq-accordion" class="space-y-4">
+                        <!-- FAQ items will be injected here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-400 border-t border-gray-800">
+            <div class="container mx-auto px-6 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-4">Red Orange Technologies</h3>
+                        <p class="text-sm">Supercharge your productivity.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Product</h4>
+                        <ul class="space-y-2">
+                            <li><a href="/#features" class="hover:text-white transition-colors">Features</a></li>
+                            <li><a href="#" onclick="navigateTo('/pricing.html')" class="hover:text-white transition-colors">Pricing</a></li>
+                            <li><a href="/#testimonials" class="hover:text-white transition-colors">Testimonials</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Company</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                            <li><a href="#" onclick="navigateTo('/contact.html')" class="hover:text-white transition-colors">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" onclick="navigateTo('/privacy.html')" class="hover:text-white transition-colors">Privacy</a></li>
+                            <li><a href="#" onclick="navigateTo('/terms.html')" class="hover:text-white transition-colors">Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
+                    <p>&copy; <span id="copyright-year"></span> Red Orange Technologies Inc. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        const mockData = {
+          plans: [
+            { id: 1, name: 'Starter', description: 'For individuals and small teams starting out.', monthly_price: 29, yearly_price: 290, features_list: ['5 Projects', '10GB Storage', 'Basic Analytics', 'Email Support', '1 Team Member'], is_popular: false },
+            { id: 2, name: 'Pro', description: 'For growing businesses that need more power and features.', monthly_price: 79, yearly_price: 790, features_list: ['Unlimited Projects', '100GB Storage', 'Advanced Analytics', 'Priority Support', 'Team Collaboration', 'Up to 10 Team Members', 'API Access'], is_popular: true },
+            { id: 3, name: 'Enterprise', description: 'For large organizations with custom needs.', monthly_price: 199, yearly_price: 1990, features_list: ['Everything in Pro', 'Dedicated Account Manager', 'Custom Integrations', '24/7 Phone Support', 'Unlimited Team Members', 'SSO & Security Audits'], is_popular: false }
+          ],
+          faqs: [
+            { id: 1, question: 'Is there a free trial available?', answer: 'Yes, we offer a 14-day free trial for our Pro plan. No credit card is required to get started.' },
+            { id: 2, question: 'Can I change my plan later?', answer: 'Absolutely! You can upgrade, downgrade, or cancel your plan at any time from your account dashboard.' },
+            { id: 3, question: 'What payment methods do you accept?', answer: 'We accept all major credit cards. For Enterprise plans, we also support bank transfers.' },
+            { id: 4, question: 'Do you offer discounts for non-profits?', answer: 'Yes, we do! We offer a 30% discount for registered non-profit organizations. Please contact our sales team with your documentation.' },
+          ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+             // --- Mobile Menu ---
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconOpen = document.getElementById('menu-icon-open');
+            const menuIconClose = document.getElementById('menu-icon-close');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+                menuIconOpen.classList.toggle('hidden');
+                menuIconClose.classList.toggle('hidden');
+            });
+
+            // --- Pricing Toggle ---
+            const pricingGrid = document.getElementById('pricing-grid');
+            const pricingToggle = document.getElementById('pricing-toggle');
+            const monthlyLabel = document.getElementById('monthly-label');
+            const yearlyLabel = document.getElementById('yearly-label');
+            
+            function renderPricing(isYearly) {
+                pricingGrid.innerHTML = mockData.plans.map(p => {
+                    const price = isYearly ? Math.round(p.yearly_price / 12) : p.monthly_price;
+                    const billingCycle = isYearly ? 'year, billed annually' : 'month';
+                    const popularClass = p.is_popular ? 'border-orange-500 bg-gray-800/50 scale-105 shadow-2xl shadow-orange-500/20' : 'border-gray-700 bg-gray-800/30';
+                    const buttonClass = p.is_popular ? 'bg-orange-500 hover:bg-orange-600 text-white' : 'bg-gray-700 hover:bg-orange-500 text-white';
+                    return `
+                    <div class="p-8 rounded-2xl border transition-all duration-300 ${popularClass}">
+                        ${p.is_popular ? '<div class="absolute -top-3 left-1/2 -translate-x-1/2"><span class="bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase">Most Popular</span></div>' : ''}
+                        <h3 class="text-2xl font-semibold text-white text-center">${p.name}</h3>
+                        <p class="text-center text-gray-400 mt-2 h-10">${p.description}</p>
+                        <div class="text-center my-6">
+                            <span class="text-5xl font-extrabold text-white">$${price}</span>
+                            <span class="text-gray-400">/ user / month</span>
+                            ${isYearly ? `<p class="text-sm text-gray-400 mt-1">Billed as $${p.yearly_price} per year</p>` : `<p class="text-sm text-gray-400 mt-1">&nbsp;</p>`}
+                        </div>
+                        <ul class="space-y-4 text-gray-300">
+                            ${p.features_list.map(feat => `<li class="flex items-start"><svg class="w-5 h-5 text-green-400 mr-2 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>${feat}</span></li>`).join('')}
+                        </ul>
+                        <button onclick="navigateTo('/signup.html')" class="w-full mt-8 py-3 px-6 font-semibold rounded-lg transition-colors ${buttonClass}">
+                            Get Started
+                        </button>
+                    </div>
+                `}).join('');
+            }
+            pricingToggle.addEventListener('change', (e) => {
+                const isYearly = e.target.checked;
+                monthlyLabel.classList.toggle('text-white', !isYearly);
+                monthlyLabel.classList.toggle('text-gray-500', isYearly);
+                yearlyLabel.classList.toggle('text-white', isYearly);
+                yearlyLabel.classList.toggle('text-gray-500', !isYearly);
+                renderPricing(isYearly);
+            });
+            renderPricing(false);
+
+            // --- FAQ Accordion ---
+            const faqAccordion = document.getElementById('faq-accordion');
+            faqAccordion.innerHTML = mockData.faqs.map((faq, index) => `
+                <div class="bg-gray-800/50 rounded-lg">
+                    <button data-index="${index}" class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+                        <span class="text-lg font-medium text-white">${faq.question}</span>
+                        <svg class="w-6 h-6 text-gray-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+                        <div class="p-6 pt-0 text-gray-400">
+                            <p>${faq.answer}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            faqAccordion.addEventListener('click', e => {
+                const toggle = e.target.closest('.faq-toggle');
+                if (!toggle) return;
+
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('svg');
+                const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+                document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = '0px');
+                document.querySelectorAll('.faq-toggle svg').forEach(i => i.classList.remove('rotate-180'));
+
+                if (!isOpen) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.classList.add('rotate-180');
+                }
+            });
+
+            // --- Copyright Year ---
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
