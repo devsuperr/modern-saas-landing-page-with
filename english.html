@@ -65,22 +65,22 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red to-brand-orange flex items-center justify-center text-white font-bold text-lg">
+                <div class="flex items-center space-x-2" onclick="navigateTo('/english')">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red to-brand-orange flex items-center justify-center text-white font-bold text-lg cursor-pointer">
                         RO
                     </div>
-                    <span class="text-xl font-semibold">
+                    <span class="text-xl font-semibold cursor-pointer">
                         Red<span class="text-brand-orange">Orange</span>
                     </span>
                 </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#" class="text-gray-300 hover:text-white transition-colors">Home</a>
-                    <a href="#solutions" class="text-gray-300 hover:text-white transition-colors">Solutions</a>
-                    <a href="#company" class="text-gray-300 hover:text-white transition-colors">Company</a>
-                    <a href="#case-studies" class="text-gray-300 hover:text-white transition-colors">Case Studies</a>
-                    <a href="#blog" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                    <a onclick="navigateTo('/english')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Home</a>
+                    <a onclick="navigateTo('/solutions')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Solutions</a>
+                    <a onclick="navigateTo('/english')" class="text-gray-300 hover:text-white transition-colors cursor-pointer" data-scroll="#company">Company</a>
+                    <a onclick="navigateTo('/english')" class="text-gray-300 hover:text-white transition-colors cursor-pointer" data-scroll="#case-studies">Case Studies</a>
+                    <a onclick="navigateTo('/blog')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Blog</a>
                 </div>
                 
                 <!-- Right Side -->
@@ -129,7 +129,7 @@
                         <button onclick="scrollToContact()" class="bg-gradient-to-r from-brand-red to-brand-orange px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center">
                             Get Consultation →
                         </button>
-                        <button class="border-2 border-gray-600 px-8 py-4 rounded-xl font-semibold hover:border-brand-orange hover:text-brand-orange transition-all">
+                        <button onclick="scrollToSection('company')" class="border-2 border-gray-600 px-8 py-4 rounded-xl font-semibold hover:border-brand-orange hover:text-brand-orange transition-all">
                             About Us
                         </button>
                     </div>
@@ -463,7 +463,7 @@
                     <div class="relative z-10">
                         <h3 class="text-xl font-semibold mb-4">Salesforce Development</h3>
                         <p class="text-gray-400 mb-6 leading-relaxed">Salesforce is a cloud-based CRM platform that enables organizations to efficiently manage customer relationships and sales processes.</p>
-                        <a href="#" class="text-brand-orange font-semibold hover:text-white transition-colors">Learn More →</a>
+                        <button onclick="navigateTo('/solutions')" class="text-brand-orange font-semibold hover:text-white transition-colors cursor-pointer">Learn More →</button>
                     </div>
                 </div>
 
@@ -472,7 +472,7 @@
                     <div class="relative z-10">
                         <h3 class="text-xl font-semibold mb-4">IT Consulting</h3>
                         <p class="text-gray-400 mb-6 leading-relaxed">Properly implemented technology, under effective management and monitoring, can pave the way for significant growth and progress.</p>
-                        <a href="#" class="text-brand-orange font-semibold hover:text-white transition-colors">Learn More →</a>
+                        <button onclick="navigateTo('/solutions')" class="text-brand-orange font-semibold hover:text-white transition-colors cursor-pointer">Learn More →</button>
                     </div>
                 </div>
 
@@ -481,7 +481,7 @@
                     <div class="relative z-10">
                         <h3 class="text-xl font-semibold mb-4">Managed Services</h3>
                         <p class="text-gray-400 mb-6 leading-relaxed">Free your internal resources to focus on core business while we take responsibility for your IT support.</p>
-                        <a href="#" class="text-brand-orange font-semibold hover:text-white transition-colors">Learn More →</a>
+                        <button onclick="navigateTo('/solutions')" class="text-brand-orange font-semibold hover:text-white transition-colors cursor-pointer">Learn More →</button>
                     </div>
                 </div>
 
@@ -490,7 +490,7 @@
                     <div class="relative z-10">
                         <h3 class="text-xl font-semibold mb-4">Web Development</h3>
                         <p class="text-gray-400 mb-6 leading-relaxed">Through our web development services, we give you the opportunity to create a compelling online presence.</p>
-                        <a href="#" class="text-brand-orange font-semibold hover:text-white transition-colors">Learn More →</a>
+                        <button onclick="navigateTo('/solutions')" class="text-brand-orange font-semibold hover:text-white transition-colors cursor-pointer">Learn More →</button>
                     </div>
                 </div>
 
@@ -499,7 +499,7 @@
                     <div class="relative z-10">
                         <h3 class="text-xl font-semibold mb-4">Mobile Development</h3>
                         <p class="text-gray-400 mb-6 leading-relaxed">Our expertise across mobile platforms allows us to create a customized mobile app that reflects your brand.</p>
-                        <a href="#" class="text-brand-orange font-semibold hover:text-white transition-colors">Learn More →</a>
+                        <button onclick="navigateTo('/solutions')" class="text-brand-orange font-semibold hover:text-white transition-colors cursor-pointer">Learn More →</button>
                     </div>
                 </div>
 
@@ -508,7 +508,7 @@
                     <div class="relative z-10">
                         <h3 class="text-xl font-semibold mb-4">IT Resources</h3>
                         <p class="text-gray-400 mb-6 leading-relaxed">IT resource services play a central role in the modern business landscape as the backbone of technological infrastructure.</p>
-                        <a href="#" class="text-brand-orange font-semibold hover:text-white transition-colors">Learn More →</a>
+                        <button onclick="navigateTo('/solutions')" class="text-brand-orange font-semibold hover:text-white transition-colors cursor-pointer">Learn More →</button>
                     </div>
                 </div>
             </div>
@@ -537,7 +537,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-3">HDFC Bank: India's Largest Private Bank</h3>
                         <p class="text-gray-400 mb-4 leading-relaxed">Headquartered in Mumbai, HDFC Bank Limited is a prominent Indian banking and financial services institution.</p>
-                        <a href="#" class="text-brand-orange font-semibold hover:text-white transition-colors">Learn More →</a>
+                        <button class="text-brand-orange font-semibold hover:text-white transition-colors cursor-pointer">Learn More →</button>
                     </div>
                 </div>
 
@@ -551,7 +551,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-3">Star Autoco: Exceptional Quality in Oslo</h3>
                         <p class="text-gray-400 mb-4 leading-relaxed">Star Autoco is a reliable destination for high-quality used cars in Oslo.</p>
-                        <a href="#" class="text-brand-orange font-semibold hover:text-white transition-colors">Learn More →</a>
+                        <button class="text-brand-orange font-semibold hover:text-white transition-colors cursor-pointer">Learn More →</button>
                     </div>
                 </div>
 
@@ -565,7 +565,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-3">Unified Finance CRM</h3>
                         <p class="text-gray-400 mb-4 leading-relaxed">With the acquisition of several financial companies, there was a need for a central CRM solution available to all.</p>
-                        <a href="#" class="text-brand-orange font-semibold hover:text-white transition-colors">Learn More →</a>
+                        <button class="text-brand-orange font-semibold hover:text-white transition-colors cursor-pointer">Learn More →</button>
                     </div>
                 </div>
             </div>
@@ -806,8 +806,8 @@
                     </div>
 
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">Facebook</a>
-                        <a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">LinkedIn</a>
+                        <button class="text-gray-400 hover:text-brand-orange transition-colors cursor-pointer">Facebook</button>
+                        <button class="text-gray-400 hover:text-brand-orange transition-colors cursor-pointer">LinkedIn</button>
                     </div>
                 </div>
 
@@ -815,13 +815,13 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Solutions</h3>
                     <ul class="space-y-3 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">ServiceNow</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Salesforce Services</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Web Development</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Mobile Development</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">ERP Solutions</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Managed Services</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">IT Resource Services</a></li>
+                        <li><button onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">ServiceNow</button></li>
+                        <li><button onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">Salesforce Services</button></li>
+                        <li><button onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">Web Development</button></li>
+                        <li><button onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">Mobile Development</button></li>
+                        <li><button onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">ERP Solutions</button></li>
+                        <li><button onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">Managed Services</button></li>
+                        <li><button onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">IT Resource Services</button></li>
                     </ul>
                 </div>
 
@@ -829,12 +829,12 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-6">Company</h3>
                     <ul class="space-y-3 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Why Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Team</a></li>
-                        <li><a href="#blog" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#case-studies" class="hover:text-white transition-colors">Case Studies</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><button onclick="scrollToSection('company')" class="hover:text-white transition-colors cursor-pointer">About Us</button></li>
+                        <li><button onclick="scrollToSection('company')" class="hover:text-white transition-colors cursor-pointer">Why Us</button></li>
+                        <li><button class="hover:text-white transition-colors cursor-pointer">Team</button></li>
+                        <li><button onclick="navigateTo('/blog')" class="hover:text-white transition-colors cursor-pointer">Blog</button></li>
+                        <li><button onclick="scrollToSection('case-studies')" class="hover:text-white transition-colors cursor-pointer">Case Studies</button></li>
+                        <li><button class="hover:text-white transition-colors cursor-pointer">Careers</button></li>
                     </ul>
                 </div>
 
@@ -843,8 +843,8 @@
                     <h3 class="text-lg font-semibold mb-6">Contact</h3>
                     <ul class="space-y-3 text-gray-400">
                         <li><a href="mailto:contact@redorangetechnologies.com" class="hover:text-white transition-colors">contact@redorangetechnologies.com</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Customer Support</a></li>
-                        <li><button onclick="scrollToContact()" class="hover:text-white transition-colors">Get Consultation</button></li>
+                        <li><button class="hover:text-white transition-colors cursor-pointer">Customer Support</button></li>
+                        <li><button onclick="scrollToContact()" class="hover:text-white transition-colors cursor-pointer">Get Consultation</button></li>
                     </ul>
                 </div>
             </div>
@@ -854,8 +854,8 @@
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <p class="text-gray-400 text-sm">© 2026 Red Orange Technologies</p>
                     <div class="flex space-x-6 text-gray-400 text-sm mt-4 md:mt-0">
-                        <a href="#" class="hover:text-white transition-colors">Terms & Conditions</a>
-                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                        <button class="hover:text-white transition-colors cursor-pointer">Terms & Conditions</button>
+                        <button class="hover:text-white transition-colors cursor-pointer">Privacy Policy</button>
                     </div>
                 </div>
             </div>
@@ -866,6 +866,13 @@
         // Navigation function
         function navigateTo(path) {
             window.parent.postMessage({type: 'nav-page', pageId: path}, '*');
+        }
+
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
         }
 
         // Intersection Observer for fade-up animations
