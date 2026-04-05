@@ -1,0 +1,393 @@
+<!-- route: /blog -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog - Red Orange Technologies | IT Insights & News</title>
+    <meta name="description" content="Read our expert insights on IT trends, Salesforce tips, development methodologies, and technological innovations from Red Orange Technologies.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['DM Sans', 'system-ui', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-red': '#E8441E',
+                        'brand-orange': '#F5841F',
+                        'brand-green': '#00E5B9',
+                        'dark-bg': '#0D0D12',
+                        'dark-card': '#1E1E28',
+                        'dark-alt': '#16161D'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'DM Sans', system-ui, sans-serif; }
+        .fade-up { opacity: 0; transform: translateY(30px); }
+        .fade-up.visible { animation: fadeUp 0.6s ease-out forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        .nav-scrolled { backdrop-filter: blur(20px); background: rgba(13, 13, 18, 0.9); }
+    </style>
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body class="bg-dark-bg text-white min-h-screen">
+
+    <!-- Fixed Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-dark-bg/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2" onclick="navigateTo('/english')">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red to-brand-orange flex items-center justify-center text-white font-bold text-lg cursor-pointer">
+                        RO
+                    </div>
+                    <span class="text-xl font-semibold cursor-pointer">
+                        Red<span class="text-brand-orange">Orange</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a onclick="navigateTo('/english')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Home</a>
+                    <a onclick="navigateTo('/solutions')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Solutions</a>
+                    <a onclick="navigateTo('/english#company')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Company</a>
+                    <a onclick="navigateTo('/english#case-studies')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Case Studies</a>
+                    <a href="#" class="text-white border-b-2 border-brand-orange">Blog</a>
+                </div>
+                
+                <!-- Right Side -->
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-1 bg-dark-card rounded-lg p-1">
+                            <button onclick="navigateTo('/blogg')" class="flex items-center space-x-2 px-3 py-1 rounded hover:bg-gray-700/50 text-sm font-medium text-gray-400">
+                                <span>🇳🇴</span>
+                                <span>Norsk</span>
+                            </button>
+                            <button class="flex items-center space-x-2 px-3 py-1 rounded bg-brand-orange/20 text-sm font-medium">
+                                <span>🇺🇸</span>
+                                <span>English</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button onclick="navigateTo('/english#contact')" class="bg-gradient-to-r from-brand-red to-brand-orange px-6 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                        Get Consultation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center fade-up">
+                <div class="inline-flex items-center space-x-2 bg-dark-card px-4 py-2 rounded-full mb-8">
+                    <div class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></div>
+                    <span class="text-sm font-medium text-gray-300">Expert insights and IT news</span>
+                </div>
+                
+                <h1 class="text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
+                    IT <em class="italic bg-gradient-to-r from-brand-red to-brand-orange bg-clip-text text-transparent">blog</em> 
+                </h1>
+                
+                <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Stay updated on the latest technology trends, best practices, and industry insights from our experts.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-up bg-dark-card rounded-3xl overflow-hidden shadow-xl">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="h-64 lg:h-auto bg-gradient-to-br from-blue-900 to-blue-600 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">🚀</div>
+                            <div class="text-2xl font-bold">The Future of IT</div>
+                        </div>
+                    </div>
+                    <div class="p-8 lg:p-12">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <span class="bg-brand-orange px-3 py-1 rounded-full text-sm font-semibold">Featured</span>
+                            <span class="text-gray-400 text-sm">January 15, 2026</span>
+                        </div>
+                        <h2 class="text-3xl font-serif font-bold mb-4">5 Technology Trends That Will Shape 2026</h2>
+                        <p class="text-gray-400 mb-6 leading-relaxed">Explore the key technology trends that will drive digital transformation in 2026, from AI integration to edge computing and sustainable IT solutions.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-brand-red to-brand-orange rounded-full flex items-center justify-center text-white font-bold">
+                                    RO
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Red Orange Team</div>
+                                    <div class="text-sm text-gray-400">IT Experts</div>
+                                </div>
+                            </div>
+                            <button class="text-brand-orange font-semibold hover:text-white transition-colors">Read more →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-up flex flex-wrap justify-center gap-4">
+                <button class="bg-brand-orange px-6 py-3 rounded-xl font-semibold shadow-lg">All Articles</button>
+                <button class="bg-dark-card px-6 py-3 rounded-xl font-semibold hover:bg-dark-alt transition-colors">Salesforce</button>
+                <button class="bg-dark-card px-6 py-3 rounded-xl font-semibold hover:bg-dark-alt transition-colors">Web Development</button>
+                <button class="bg-dark-card px-6 py-3 rounded-xl font-semibold hover:bg-dark-alt transition-colors">IT Strategy</button>
+                <button class="bg-dark-card px-6 py-3 rounded-xl font-semibold hover:bg-dark-alt transition-colors">Tech Trends</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Articles Grid -->
+    <section class="pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="fade-up bg-dark-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-purple-900 to-purple-600 flex items-center justify-center">
+                        <div class="text-4xl">☁️</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm">Salesforce</span>
+                            <span class="text-gray-400 text-sm">Jan 12, 2026</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 group-hover:text-brand-orange transition-colors">Salesforce Einstein AI: Revolutionizing CRM</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">Learn how Salesforce Einstein AI transforms customer relationships and automates sales and marketing processes.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">5 min read</span>
+                            <span class="text-brand-orange font-semibold group-hover:text-white transition-colors">Read more →</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="fade-up bg-dark-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-green-900 to-green-600 flex items-center justify-center">
+                        <div class="text-4xl">⚡</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm">Web Development</span>
+                            <span class="text-gray-400 text-sm">Jan 10, 2026</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 group-hover:text-brand-orange transition-colors">Next.js 15: New Possibilities for React</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">Explore the powerful features in Next.js 15 and how they can improve the performance of your web applications.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">7 min read</span>
+                            <span class="text-brand-orange font-semibold group-hover:text-white transition-colors">Read more →</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="fade-up bg-dark-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-red-900 to-red-600 flex items-center justify-center">
+                        <div class="text-4xl">🔒</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-red-500/20 text-red-300 px-3 py-1 rounded-full text-sm">Security</span>
+                            <span class="text-gray-400 text-sm">Jan 8, 2026</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 group-hover:text-brand-orange transition-colors">Zero Trust Architecture: The Future of Security</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">Why Zero Trust is essential for modern IT security and how to implement it in your organization.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">6 min read</span>
+                            <span class="text-brand-orange font-semibold group-hover:text-white transition-colors">Read more →</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="fade-up bg-dark-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-orange-900 to-orange-600 flex items-center justify-center">
+                        <div class="text-4xl">📱</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-sm">Mobile Development</span>
+                            <span class="text-gray-400 text-sm">Jan 5, 2026</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 group-hover:text-brand-orange transition-colors">Flutter vs React Native: Which to Choose in 2026?</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">A comprehensive comparison of the two leading cross-platform frameworks for mobile development.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">8 min read</span>
+                            <span class="text-brand-orange font-semibold group-hover:text-white transition-colors">Read more →</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="fade-up bg-dark-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-teal-900 to-teal-600 flex items-center justify-center">
+                        <div class="text-4xl">🌱</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-teal-500/20 text-teal-300 px-3 py-1 rounded-full text-sm">Sustainability</span>
+                            <span class="text-gray-400 text-sm">Jan 3, 2026</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 group-hover:text-brand-orange transition-colors">Green IT: Sustainable Technology Development</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">How to develop environmentally friendly IT solutions and reduce technology's carbon footprint.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">6 min read</span>
+                            <span class="text-brand-orange font-semibold group-hover:text-white transition-colors">Read more →</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="fade-up bg-dark-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-indigo-900 to-indigo-600 flex items-center justify-center">
+                        <div class="text-4xl">🤖</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-indigo-500/20 text-indigo-300 px-3 py-1 rounded-full text-sm">AI/ML</span>
+                            <span class="text-gray-400 text-sm">Jan 1, 2026</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 group-hover:text-brand-orange transition-colors">AI-Driven Automation in Business Processes</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">Practical examples of how AI can automate and optimize daily business operations.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">9 min read</span>
+                            <span class="text-brand-orange font-semibold group-hover:text-white transition-colors">Read more →</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="py-20 bg-dark-alt">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-up bg-dark-card rounded-3xl p-8 md:p-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">
+                    Stay <span class="bg-gradient-to-r from-brand-red to-brand-orange bg-clip-text text-transparent">updated</span>
+                </h2>
+                <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                    Get the latest IT insights and expert tips delivered directly to your inbox. No spam, just valuable content.
+                </p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" placeholder="Your email address" required class="flex-1 px-4 py-3 bg-dark-bg border border-gray-700 rounded-xl focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-colors text-white placeholder-gray-400">
+                    <button type="submit" class="bg-gradient-to-r from-brand-red to-brand-orange px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all whitespace-nowrap">
+                        Subscribe →
+                    </button>
+                </form>
+                <p class="text-sm text-gray-500 mt-4">Unsubscribe at any time. We respect your privacy.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-card py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red to-brand-orange flex items-center justify-center text-white font-bold text-lg">
+                            RO
+                        </div>
+                        <span class="text-xl font-semibold">Red<span class="text-brand-orange">Orange</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Leading IT partner in Scandinavia with offices in Norway and India.</p>
+                    <div class="space-y-3 text-sm text-gray-400 mb-6">
+                        <div><strong class="text-white">Norway:</strong><br>Lensmannslia 4<br>N-1386 Asker</div>
+                        <div><strong class="text-white">India:</strong><br>C 86 Phase 7 Industrial Area<br>Punjab</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Solutions</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">Salesforce Services</a></li>
+                        <li><a onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">Web Development</a></li>
+                        <li><a onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">Mobile Development</a></li>
+                        <li><a onclick="navigateTo('/solutions')" class="hover:text-white transition-colors cursor-pointer">IT Consulting</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Company</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a onclick="navigateTo('/english')" class="hover:text-white transition-colors cursor-pointer">About Us</a></li>
+                        <li><a onclick="navigateTo('/english#company')" class="hover:text-white transition-colors cursor-pointer">Why Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a onclick="navigateTo('/english#case-studies')" class="hover:text-white transition-colors cursor-pointer">Case Studies</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contact</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="mailto:contact@redorangetechnologies.com" class="hover:text-white transition-colors">contact@redorangetechnologies.com</a></li>
+                        <li><a onclick="navigateTo('/english#contact')" class="hover:text-white transition-colors cursor-pointer">Get Consultation</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">© 2026 Red Orange Technologies</p>
+                    <div class="flex space-x-6 text-gray-400 text-sm mt-4 md:mt-0">
+                        <a href="#" class="hover:text-white transition-colors">Terms & Conditions</a>
+                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function navigateTo(path) {
+            window.parent.postMessage({type: 'nav-page', pageId: path}, '*');
+        }
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+    </script>
+<a href="https://studiojungle.ai" target="_blank" rel="noopener noreferrer" style="position:fixed;bottom:12px;right:12px;z-index:9999;background:rgba(0,0,0,0.75);color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-family:system-ui,sans-serif;display:flex;align-items:center;gap:6px;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.2);text-decoration:none;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>Built with Studiojungle</a>
+</body>
+</html>

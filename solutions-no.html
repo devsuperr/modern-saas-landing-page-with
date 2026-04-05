@@ -1,0 +1,436 @@
+<!-- route: /losninger -->
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Løsninger - Red Orange Technologies | IT-tjenester Norge</title>
+    <meta name="description" content="Utforsk våre omfattende IT-løsninger: Salesforce-utvikling, webutvikling, mobilutvikling, IT-rådgivning og mer fra Red Orange Technologies.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['DM Sans', 'system-ui', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-red': '#E8441E',
+                        'brand-orange': '#F5841F',
+                        'brand-green': '#00E5B9',
+                        'dark-bg': '#0D0D12',
+                        'dark-card': '#1E1E28',
+                        'dark-alt': '#16161D'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'DM Sans', system-ui, sans-serif; }
+        .fade-up { opacity: 0; transform: translateY(30px); }
+        .fade-up.visible { animation: fadeUp 0.6s ease-out forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        .nav-scrolled { backdrop-filter: blur(20px); background: rgba(13, 13, 18, 0.9); }
+    </style>
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body class="bg-dark-bg text-white min-h-screen">
+
+    <!-- Fixed Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-dark-bg/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2" onclick="navigateTo('/')">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red to-brand-orange flex items-center justify-center text-white font-bold text-lg cursor-pointer">
+                        RO
+                    </div>
+                    <span class="text-xl font-semibold cursor-pointer">
+                        Red<span class="text-brand-orange">Orange</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a onclick="navigateTo('/')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Hjem</a>
+                    <a href="#" class="text-white border-b-2 border-brand-orange">Løsninger</a>
+                    <a onclick="navigateTo('/#selskapet')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Selskapet</a>
+                    <a onclick="navigateTo('/#casestudier')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Casestudier</a>
+                    <a onclick="navigateTo('/blogg')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Blogg</a>
+                </div>
+                
+                <!-- Right Side -->
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-1 bg-dark-card rounded-lg p-1">
+                            <button class="flex items-center space-x-2 px-3 py-1 rounded bg-brand-orange/20 text-sm font-medium">
+                                <span>🇳🇴</span>
+                                <span>Norsk</span>
+                            </button>
+                            <button onclick="navigateTo('/solutions')" class="flex items-center space-x-2 px-3 py-1 rounded hover:bg-gray-700/50 text-sm font-medium text-gray-400">
+                                <span>🇺🇸</span>
+                                <span>English</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button onclick="navigateTo('/#kontakt')" class="bg-gradient-to-r from-brand-red to-brand-orange px-6 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                        Bestill konsultasjon
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center fade-up">
+                <div class="inline-flex items-center space-x-2 bg-dark-card px-4 py-2 rounded-full mb-8">
+                    <div class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></div>
+                    <span class="text-sm font-medium text-gray-300">Komplett portefølje av IT-tjenester</span>
+                </div>
+                
+                <h1 class="text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
+                    Våre <em class="italic bg-gradient-to-r from-brand-red to-brand-orange bg-clip-text text-transparent">løsninger</em> 
+                </h1>
+                
+                <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Fra Salesforce-utvikling til omfattende IT-rådgivning - vi leverer skreddersydde teknologiløsninger som driver din virksomhet fremover.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Salesforce Services -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        ☁️
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Salesforce-tjenester</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Komplett Salesforce-ekspertise fra konsultering til implementering, tilpasning og vedlikehold av din CRM-plattform.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• Salesforce-implementering</li>
+                        <li>• Tilpasset utvikling (Apex, LWC)</li>
+                        <li>• Integrasjoner og migrasjoner</li>
+                        <li>• Administrasjon og support</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">Salesforce Gold Partner</div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        🌐
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Webutvikling</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Moderne, responsive nettsider og webapplikasjoner bygget med de nyeste teknologiene for optimal ytelse.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• React, Vue.js, Angular</li>
+                        <li>• Node.js backend-utvikling</li>
+                        <li>• E-handel og CMS-løsninger</li>
+                        <li>• Progressive Web Apps (PWA)</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">Full-stack ekspertise</div>
+                </div>
+
+                <!-- Mobile Development -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        📱
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Mobilutvikling</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Native og cross-platform mobilapplikasjoner for iOS og Android med fokus på brukeropplevelse og ytelse.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• Native iOS og Android</li>
+                        <li>• React Native, Flutter</li>
+                        <li>• App Store-optimalisering</li>
+                        <li>• Vedlikehold og oppdateringer</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">Cross-platform ekspertise</div>
+                </div>
+
+                <!-- IT Consulting -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-orange-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        💡
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">IT-rådgivning</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Strategisk IT-rådgivning som hjelper deg med å ta de riktige teknologiske beslutningene for din virksomhet.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• Digital transformasjonsstrategi</li>
+                        <li>• Teknologiarkitektur</li>
+                        <li>• Prosessoptimalisering</li>
+                        <li>• IT-sikkerhetsvurderinger</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">14+ års erfaring</div>
+                </div>
+
+                <!-- Managed Services -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        🔧
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Administrerte tjenester</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Komplett IT-drift og support som lar deg fokusere på kjernevirksomheten mens vi håndterer teknologien.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• 24/7 overvåking og support</li>
+                        <li>• Infrastrukturforvaltning</li>
+                        <li>• Sikkerhetskopiering og gjenoppretting</li>
+                        <li>• Ytelsesoptimalisering</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">30 min svartid</div>
+                </div>
+
+                <!-- Staff Augmentation -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-teal-500/20 to-teal-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        👥
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">IT-ressurser</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Erfarne utviklere og IT-spesialister som integreres sømløst i ditt team for å accelerere prosjektleveranser.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• Dedikerte utviklerteam</li>
+                        <li>• Fleksibel skalering</li>
+                        <li>• Rask oppstart (2-6 uker)</li>
+                        <li>• Fast månedlig prising</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">Praktisk tidssone</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="py-20 bg-dark-alt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-up text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">Teknologier vi behersker</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Vi holder oss oppdatert med de nyeste teknologitrendene for å levere banebrytende løsninger.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Frontend -->
+                <div class="fade-up bg-dark-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-semibold mb-4 text-brand-orange">Frontend</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>React & Next.js</li>
+                        <li>Vue.js & Nuxt.js</li>
+                        <li>Angular</li>
+                        <li>TypeScript</li>
+                        <li>Tailwind CSS</li>
+                    </ul>
+                </div>
+
+                <!-- Backend -->
+                <div class="fade-up bg-dark-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-semibold mb-4 text-brand-orange">Backend</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Node.js & Express</li>
+                        <li>Python & Django</li>
+                        <li>Java & Spring</li>
+                        <li>C# & .NET</li>
+                        <li>PHP & Laravel</li>
+                    </ul>
+                </div>
+
+                <!-- Cloud & DevOps -->
+                <div class="fade-up bg-dark-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-semibold mb-4 text-brand-orange">Cloud & DevOps</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>AWS & Azure</li>
+                        <li>Google Cloud</li>
+                        <li>Docker & Kubernetes</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>Terraform</li>
+                    </ul>
+                </div>
+
+                <!-- Mobile & Database -->
+                <div class="fade-up bg-dark-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-semibold mb-4 text-brand-orange">Mobile & Database</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>React Native</li>
+                        <li>Flutter</li>
+                        <li>PostgreSQL & MySQL</li>
+                        <li>MongoDB</li>
+                        <li>Redis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Focus -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-up text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">Bransjefokus</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Vi leverer spesialiserte løsninger tilpasset kravene i ulike bransjer.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">🏥</div>
+                    <h3 class="text-xl font-semibold mb-3">Helsevesen</h3>
+                    <p class="text-gray-400">GDPR-kompatible løsninger for pasientdata, telemedisin og helseadministrasjon.</p>
+                </div>
+
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">🏭</div>
+                    <h3 class="text-xl font-semibold mb-3">Produksjon</h3>
+                    <p class="text-gray-400">ERP-integrasjoner, produksjonsoptimalisering og kvalitetsstyringssystemer.</p>
+                </div>
+
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">💰</div>
+                    <h3 class="text-xl font-semibold mb-3">Finans</h3>
+                    <p class="text-gray-400">Sikre betalingsløsninger, regnskapssystemer og compliance-verktøy.</p>
+                </div>
+
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">🚛</div>
+                    <h3 class="text-xl font-semibold mb-3">Logistikk</h3>
+                    <p class="text-gray-400">Sporingssystemer, rute-optimalisering og lagerforvaltningsløsninger.</p>
+                </div>
+
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">🛒</div>
+                    <h3 class="text-xl font-semibold mb-3">E-handel</h3>
+                    <p class="text-gray-400">Skalerbare nettbutikker, betalingsintegrasjoner og kundeanalytikk.</p>
+                </div>
+
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">🎓</div>
+                    <h3 class="text-xl font-semibold mb-3">Utdanning</h3>
+                    <p class="text-gray-400">Læringsplattformer, studentadministrasjon og digitale klasseromsløsninger.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-dark-alt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-up bg-dark-card rounded-3xl p-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">
+                    Klar til å <span class="bg-gradient-to-r from-brand-red to-brand-orange bg-clip-text text-transparent">transformere</span> din virksomhet?
+                </h2>
+                <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                    La oss diskutere hvordan våre løsninger kan hjelpe deg med å nå dine forretningsmål.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="navigateTo('/#kontakt')" class="bg-gradient-to-r from-brand-red to-brand-orange px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                        Bestill gratis konsultasjon →
+                    </button>
+                    <button onclick="navigateTo('/#casestudier')" class="border-2 border-gray-600 px-8 py-4 rounded-xl font-semibold hover:border-brand-orange hover:text-brand-orange transition-all">
+                        Se våre prosjekter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-card py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red to-brand-orange flex items-center justify-center text-white font-bold text-lg">
+                            RO
+                        </div>
+                        <span class="text-xl font-semibold">Red<span class="text-brand-orange">Orange</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Ledende IT-partner i Skandinavia med kontorer i Norge og India.</p>
+                    <div class="space-y-3 text-sm text-gray-400 mb-6">
+                        <div><strong class="text-white">Norge:</strong><br>Lensmannslia 4<br>N-1386 Asker</div>
+                        <div><strong class="text-white">India:</strong><br>C 86 Phase 7 Industrial Area<br>Punjab</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Løsninger</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Salesforce-tjenester</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Webutvikling</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mobilutvikling</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">IT-rådgivning</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Administrerte tjenester</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Selskapet</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a onclick="navigateTo('/')" class="hover:text-white transition-colors cursor-pointer">Om oss</a></li>
+                        <li><a onclick="navigateTo('/#selskapet')" class="hover:text-white transition-colors cursor-pointer">Hvorfor oss</a></li>
+                        <li><a onclick="navigateTo('/blogg')" class="hover:text-white transition-colors cursor-pointer">Blogg</a></li>
+                        <li><a onclick="navigateTo('/#casestudier')" class="hover:text-white transition-colors cursor-pointer">Casestudier</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Kontakt</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="mailto:contact@redorangetechnologies.com" class="hover:text-white transition-colors">contact@redorangetechnologies.com</a></li>
+                        <li><a onclick="navigateTo('/#kontakt')" class="hover:text-white transition-colors cursor-pointer">Bestill konsultasjon</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">© 2026 Red Orange Technologies</p>
+                    <div class="flex space-x-6 text-gray-400 text-sm mt-4 md:mt-0">
+                        <a href="#" class="hover:text-white transition-colors">Vilkår og betingelser</a>
+                        <a href="#" class="hover:text-white transition-colors">Personvernerklæring</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function navigateTo(path) {
+            window.parent.postMessage({type: 'nav-page', pageId: path}, '*');
+        }
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+    </script>
+<a href="https://studiojungle.ai" target="_blank" rel="noopener noreferrer" style="position:fixed;bottom:12px;right:12px;z-index:9999;background:rgba(0,0,0,0.75);color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-family:system-ui,sans-serif;display:flex;align-items:center;gap:6px;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.2);text-decoration:none;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>Built with Studiojungle</a>
+</body>
+</html>

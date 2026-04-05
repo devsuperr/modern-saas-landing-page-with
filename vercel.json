@@ -1,12 +1,24 @@
 {
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "https://vqnpcgubxhpljyommbus.supabase.co/functions/v1/autodb-rest/b5f31980-087c-4364-959e-bdaf2ea4607d/:path*"
+      "source": "/blog",
+      "destination": "/blog-en.html"
     },
     {
-      "source": "/api-docs",
-      "destination": "https://vqnpcgubxhpljyommbus.supabase.co/functions/v1/api-docs/b5f31980-087c-4364-959e-bdaf2ea4607d"
+      "source": "/blogg",
+      "destination": "/blog-no.html"
+    },
+    {
+      "source": "/english",
+      "destination": "/english.html"
+    },
+    {
+      "source": "/solutions",
+      "destination": "/solutions-en.html"
+    },
+    {
+      "source": "/losninger",
+      "destination": "/solutions-no.html"
     },
     {
       "source": "/(.*)",

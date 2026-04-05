@@ -1,0 +1,436 @@
+<!-- route: /solutions -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solutions - Red Orange Technologies | IT Services</title>
+    <meta name="description" content="Explore our comprehensive IT solutions: Salesforce development, web development, mobile development, IT consulting and more from Red Orange Technologies.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['DM Sans', 'system-ui', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-red': '#E8441E',
+                        'brand-orange': '#F5841F',
+                        'brand-green': '#00E5B9',
+                        'dark-bg': '#0D0D12',
+                        'dark-card': '#1E1E28',
+                        'dark-alt': '#16161D'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'DM Sans', system-ui, sans-serif; }
+        .fade-up { opacity: 0; transform: translateY(30px); }
+        .fade-up.visible { animation: fadeUp 0.6s ease-out forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        .nav-scrolled { backdrop-filter: blur(20px); background: rgba(13, 13, 18, 0.9); }
+    </style>
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body class="bg-dark-bg text-white min-h-screen">
+
+    <!-- Fixed Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-dark-bg/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2" onclick="navigateTo('/english')">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red to-brand-orange flex items-center justify-center text-white font-bold text-lg cursor-pointer">
+                        RO
+                    </div>
+                    <span class="text-xl font-semibold cursor-pointer">
+                        Red<span class="text-brand-orange">Orange</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a onclick="navigateTo('/english')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Home</a>
+                    <a href="#" class="text-white border-b-2 border-brand-orange">Solutions</a>
+                    <a onclick="navigateTo('/english#company')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Company</a>
+                    <a onclick="navigateTo('/english#case-studies')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Case Studies</a>
+                    <a onclick="navigateTo('/blog')" class="text-gray-300 hover:text-white transition-colors cursor-pointer">Blog</a>
+                </div>
+                
+                <!-- Right Side -->
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-1 bg-dark-card rounded-lg p-1">
+                            <button onclick="navigateTo('/losninger')" class="flex items-center space-x-2 px-3 py-1 rounded hover:bg-gray-700/50 text-sm font-medium text-gray-400">
+                                <span>🇳🇴</span>
+                                <span>Norsk</span>
+                            </button>
+                            <button class="flex items-center space-x-2 px-3 py-1 rounded bg-brand-orange/20 text-sm font-medium">
+                                <span>🇺🇸</span>
+                                <span>English</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button onclick="navigateTo('/english#contact')" class="bg-gradient-to-r from-brand-red to-brand-orange px-6 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                        Get Consultation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center fade-up">
+                <div class="inline-flex items-center space-x-2 bg-dark-card px-4 py-2 rounded-full mb-8">
+                    <div class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></div>
+                    <span class="text-sm font-medium text-gray-300">Complete portfolio of IT services</span>
+                </div>
+                
+                <h1 class="text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
+                    Our <em class="italic bg-gradient-to-r from-brand-red to-brand-orange bg-clip-text text-transparent">solutions</em> 
+                </h1>
+                
+                <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    From Salesforce development to comprehensive IT consulting - we deliver tailored technology solutions that drive your business forward.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Salesforce Services -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        ☁️
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Salesforce Services</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Complete Salesforce expertise from consulting to implementation, customization, and maintenance of your CRM platform.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• Salesforce implementation</li>
+                        <li>• Custom development (Apex, LWC)</li>
+                        <li>• Integrations and migrations</li>
+                        <li>• Administration and support</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">Salesforce Gold Partner</div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        🌐
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Web Development</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Modern, responsive websites and web applications built with the latest technologies for optimal performance.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• React, Vue.js, Angular</li>
+                        <li>• Node.js backend development</li>
+                        <li>• E-commerce and CMS solutions</li>
+                        <li>• Progressive Web Apps (PWA)</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">Full-stack expertise</div>
+                </div>
+
+                <!-- Mobile Development -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        📱
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Mobile Development</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Native and cross-platform mobile applications for iOS and Android with focus on user experience and performance.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• Native iOS and Android</li>
+                        <li>• React Native, Flutter</li>
+                        <li>• App Store optimization</li>
+                        <li>• Maintenance and updates</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">Cross-platform expertise</div>
+                </div>
+
+                <!-- IT Consulting -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-orange-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        💡
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">IT Consulting</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Strategic IT consulting that helps you make the right technology decisions for your business.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• Digital transformation strategy</li>
+                        <li>• Technology architecture</li>
+                        <li>• Process optimization</li>
+                        <li>• IT security assessments</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">14+ years experience</div>
+                </div>
+
+                <!-- Managed Services -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        🔧
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Managed Services</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Complete IT operations and support that lets you focus on core business while we handle the technology.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• 24/7 monitoring and support</li>
+                        <li>• Infrastructure management</li>
+                        <li>• Backup and recovery</li>
+                        <li>• Performance optimization</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">30 min response time</div>
+                </div>
+
+                <!-- Staff Augmentation -->
+                <div class="fade-up bg-dark-card p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-teal-500/20 to-teal-600/20 rounded-2xl flex items-center justify-center text-4xl mb-6">
+                        👥
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">IT Resources</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Experienced developers and IT specialists who integrate seamlessly into your team to accelerate project deliveries.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
+                        <li>• Dedicated development teams</li>
+                        <li>• Flexible scaling</li>
+                        <li>• Quick startup (2-6 weeks)</li>
+                        <li>• Fixed monthly pricing</li>
+                    </ul>
+                    <div class="text-brand-orange font-semibold">Convenient timezone</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="py-20 bg-dark-alt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-up text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">Technologies we master</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">We stay updated with the latest technology trends to deliver cutting-edge solutions.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Frontend -->
+                <div class="fade-up bg-dark-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-semibold mb-4 text-brand-orange">Frontend</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>React & Next.js</li>
+                        <li>Vue.js & Nuxt.js</li>
+                        <li>Angular</li>
+                        <li>TypeScript</li>
+                        <li>Tailwind CSS</li>
+                    </ul>
+                </div>
+
+                <!-- Backend -->
+                <div class="fade-up bg-dark-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-semibold mb-4 text-brand-orange">Backend</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Node.js & Express</li>
+                        <li>Python & Django</li>
+                        <li>Java & Spring</li>
+                        <li>C# & .NET</li>
+                        <li>PHP & Laravel</li>
+                    </ul>
+                </div>
+
+                <!-- Cloud & DevOps -->
+                <div class="fade-up bg-dark-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-semibold mb-4 text-brand-orange">Cloud & DevOps</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>AWS & Azure</li>
+                        <li>Google Cloud</li>
+                        <li>Docker & Kubernetes</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>Terraform</li>
+                    </ul>
+                </div>
+
+                <!-- Mobile & Database -->
+                <div class="fade-up bg-dark-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-semibold mb-4 text-brand-orange">Mobile & Database</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>React Native</li>
+                        <li>Flutter</li>
+                        <li>PostgreSQL & MySQL</li>
+                        <li>MongoDB</li>
+                        <li>Redis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Focus -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-up text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">Industry Focus</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">We deliver specialized solutions tailored to requirements in various industries.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">🏥</div>
+                    <h3 class="text-xl font-semibold mb-3">Healthcare</h3>
+                    <p class="text-gray-400">GDPR-compliant solutions for patient data, telemedicine and healthcare administration.</p>
+                </div>
+
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">🏭</div>
+                    <h3 class="text-xl font-semibold mb-3">Manufacturing</h3>
+                    <p class="text-gray-400">ERP integrations, production optimization and quality management systems.</p>
+                </div>
+
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">💰</div>
+                    <h3 class="text-xl font-semibold mb-3">Finance</h3>
+                    <p class="text-gray-400">Secure payment solutions, accounting systems and compliance tools.</p>
+                </div>
+
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">🚛</div>
+                    <h3 class="text-xl font-semibold mb-3">Logistics</h3>
+                    <p class="text-gray-400">Tracking systems, route optimization and warehouse management solutions.</p>
+                </div>
+
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">🛒</div>
+                    <h3 class="text-xl font-semibold mb-3">E-commerce</h3>
+                    <p class="text-gray-400">Scalable online stores, payment integrations and customer analytics.</p>
+                </div>
+
+                <div class="fade-up bg-dark-card p-6 rounded-2xl hover:bg-dark-alt transition-all">
+                    <div class="text-3xl mb-4">🎓</div>
+                    <h3 class="text-xl font-semibold mb-3">Education</h3>
+                    <p class="text-gray-400">Learning platforms, student administration and digital classroom solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-dark-alt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="fade-up bg-dark-card rounded-3xl p-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">
+                    Ready to <span class="bg-gradient-to-r from-brand-red to-brand-orange bg-clip-text text-transparent">transform</span> your business?
+                </h2>
+                <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                    Let's discuss how our solutions can help you achieve your business goals.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="navigateTo('/english#contact')" class="bg-gradient-to-r from-brand-red to-brand-orange px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                        Get free consultation →
+                    </button>
+                    <button onclick="navigateTo('/english#case-studies')" class="border-2 border-gray-600 px-8 py-4 rounded-xl font-semibold hover:border-brand-orange hover:text-brand-orange transition-all">
+                        View our projects
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-card py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red to-brand-orange flex items-center justify-center text-white font-bold text-lg">
+                            RO
+                        </div>
+                        <span class="text-xl font-semibold">Red<span class="text-brand-orange">Orange</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Leading IT partner in Scandinavia with offices in Norway and India.</p>
+                    <div class="space-y-3 text-sm text-gray-400 mb-6">
+                        <div><strong class="text-white">Norway:</strong><br>Lensmannslia 4<br>N-1386 Asker</div>
+                        <div><strong class="text-white">India:</strong><br>C 86 Phase 7 Industrial Area<br>Punjab</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Solutions</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Salesforce Services</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Web Development</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mobile Development</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">IT Consulting</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Managed Services</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Company</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a onclick="navigateTo('/english')" class="hover:text-white transition-colors cursor-pointer">About Us</a></li>
+                        <li><a onclick="navigateTo('/english#company')" class="hover:text-white transition-colors cursor-pointer">Why Us</a></li>
+                        <li><a onclick="navigateTo('/blog')" class="hover:text-white transition-colors cursor-pointer">Blog</a></li>
+                        <li><a onclick="navigateTo('/english#case-studies')" class="hover:text-white transition-colors cursor-pointer">Case Studies</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contact</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="mailto:contact@redorangetechnologies.com" class="hover:text-white transition-colors">contact@redorangetechnologies.com</a></li>
+                        <li><a onclick="navigateTo('/english#contact')" class="hover:text-white transition-colors cursor-pointer">Get Consultation</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">© 2026 Red Orange Technologies</p>
+                    <div class="flex space-x-6 text-gray-400 text-sm mt-4 md:mt-0">
+                        <a href="#" class="hover:text-white transition-colors">Terms & Conditions</a>
+                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function navigateTo(path) {
+            window.parent.postMessage({type: 'nav-page', pageId: path}, '*');
+        }
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+    </script>
+<a href="https://studiojungle.ai" target="_blank" rel="noopener noreferrer" style="position:fixed;bottom:12px;right:12px;z-index:9999;background:rgba(0,0,0,0.75);color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;font-family:system-ui,sans-serif;display:flex;align-items:center;gap:6px;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.2);text-decoration:none;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>Built with Studiojungle</a>
+</body>
+</html>
